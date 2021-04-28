@@ -108,7 +108,7 @@ void decode_execute_ins(long int IR, long int MAR)
 				printf("%ld is loaded to Accumulator \n",AC);
 				break;
 			}
-		case 11:
+		case 13:
 			{
 				PC = memory[MAR];
 				JUMP = 1;
@@ -116,7 +116,7 @@ void decode_execute_ins(long int IR, long int MAR)
 				printf("next instruction is fetched from location %ld\n",PC);
 				break;
 			}
-		case 12:
+		case 14:
 			{
 				PC = memory[MAR];
 				JUMP_RIGHT = 1;
