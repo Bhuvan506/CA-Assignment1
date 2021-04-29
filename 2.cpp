@@ -116,16 +116,17 @@ void decode_execute_ins(long int IR, long int MAR)
 			}
 		case 12:
 			{
-				MQ = AC / memory[MAR];
-				AC = AC % memory[MAR];
+				MQ = AC / memory[MAR];   		//Quotient
+				AC = AC % memory[MAR];   		//Remainder
 				cout << "DIV M(x) function is activated" << endl;
+				cout << "The resultant qoutient of the division is " << MQ << endl;
 			}
 		case 13:
 			{
 				PC = memory[MAR];
 				JUMP = 1;
 				cout << "JUMP M(x,0:19) function is activated" << endl;
-				cout << "next instruction is fetched from location " << PC << endl;
+				cout << "Next instruction is fetched from location. " << PC << endl;
 				break;
 			}
 		case 14:
@@ -134,12 +135,39 @@ void decode_execute_ins(long int IR, long int MAR)
 				JUMP_RIGHT = 1;
 				JUMP = 1;
 				cout << "JUMP M(x,20:39) function is activated" << endl;
-				cout << "next instruction is fetched from location " << PC << endl;
+				cout << "Next instruction is fetched from location. " << PC << endl;
 				break;
 			}
 		case 15:
 			{
-				
+				if(AC >= 0){
+					JUMP = 1;
+					cout << "JUMP+ M(x,0:19) function is activated" << endl;
+					cout << "Next instruction is fetched from location. " << PC << endl;
+				}
+				break;
+			}
+		case 16:
+			{
+				if(AC >= 0){
+					JUMP_RIGHT = 1;
+					JUMP = 1;
+					cout << "JUMP+ M(x,20:39) function is activated" << endl;
+					cout << "Next instruction is fetched from location. " << PC << endl;
+				}
+				break;
+			}
+		case 20:
+			{
+				AC = AC*2;
+				cout << "LSH function is activated" << endl;
+				cout << "Accumulator is left shifted by one bit." << endl;
+			}
+		case 21:
+			{
+				AC = AC/2;
+				cout << "RSH function is activated" << endl;
+				cout << "Accumulator is right shifted by one bit." << endl;
 			}
 
 
