@@ -120,6 +120,8 @@ void decode_execute_ins(long long int IR, long long int MAR)
 				AC = temp>>40 + memory[MAR]*MQ + memory[MAR]*n1 + MQ*n2;
 				MQ = TEMP % 1099511627776;
 				cout << "MUL M(x) function is activated" << endl;
+				cout << "Most significant figures of the multiplication loaded into accumulator." << endl;
+				cout << "And least significant bits stored in MQ register." << endl;
 				break;
 			}
 		case 12:
