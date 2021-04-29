@@ -110,7 +110,9 @@ void decode_execute_ins(long int IR, long int MAR)
 			}
 		case 11:
 			{
-				long int TEMP = MQ*(memory[MAR]);
+				long long int TEMP = MQ*(memory[MAR]);
+				AC = TEMP / 1099511627776;
+				MQ = TEMP % 1099511627776;
 				cout << "MUL M(x) function is activated" << endl;
 				break;
 			}
