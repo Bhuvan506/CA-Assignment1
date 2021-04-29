@@ -116,10 +116,11 @@ void decode_execute_ins(long int IR, long int MAR)
 			}
 		case 12:
 			{
-				MQ = AC / memory[MAR];   		//Quotient
-				AC = AC % memory[MAR];   		//Remainder
+				MQ = AC / memory[MAR];   		
+				AC = AC % memory[MAR];   		
 				cout << "DIV M(x) function is activated" << endl;
 				cout << "The resultant qoutient of the division is " << MQ << "." << endl;
+				break;
 			}
 		case 13:
 			{
@@ -162,18 +163,21 @@ void decode_execute_ins(long int IR, long int MAR)
 				AC = AC*2;
 				cout << "LSH function is activated" << endl;
 				cout << "Accumulator is left shifted by one bit." << endl;
+				break;
 			}
 		case 21:
 			{
 				AC = AC/2;
 				cout << "RSH function is activated" << endl;
 				cout << "Accumulator is right shifted by one bit." << endl;
+				break;
 			}
 		case 33:
 			{
 				memory[MAR] = AC;
 				cout << "STOR M(x) function is activated" << endl;
 				cout << "Transfered contents of accumulator to memory location " << MAR << "." << endl;
+				break;
 			}
 
 
