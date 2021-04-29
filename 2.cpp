@@ -3,20 +3,20 @@
 
 using namespace std;
 
-long int PC=0;
-long int memory[1000];
-long int MBR;
-long int MAR;
-long int IR;
-long int IBR;
-long int AC;
-long int MQ;
-long int run = 1;
+long long int PC=0;
+long long int memory[1000];
+long long int MBR;
+long long int MAR;
+long long int IR;
+long long int IBR;
+long long int AC;
+long long int MQ;
+long long int run = 1;
 int JUMP = 0;
 int JUMP_RIGHT = 0;
 
 
-void decode_execute_ins(long int IR, long int MAR)
+void decode_execute_ins(long long int IR, long long int MAR)
 {
 	switch(IR)
 	{
@@ -111,7 +111,13 @@ void decode_execute_ins(long int IR, long int MAR)
 		case 11:
 			{
 				long long int TEMP = MQ*(memory[MAR]);
-				AC = TEMP / 1099511627776;
+				long long int n1,n2,temp,k,AC;
+				n1 = (MQ & 0xffffffffff);
+    			n2 = (memory[MAR] & 0xffffffffff);
+				temp = n1*n2;
+				MQ >>= 40;
+				memory[MAR] >>= 40;
+				AC = temp>>40 + memory[MAR]*MQ + memory[MAR]*n1 + MQ*n2;
 				MQ = TEMP % 1099511627776;
 				cout << "MUL M(x) function is activated" << endl;
 				break;
@@ -158,6 +164,20 @@ void decode_execute_ins(long int IR, long int MAR)
 					cout << "JUMP+ M(x,20:39) function is activated" << endl;
 					cout << "Next instruction is fetched from location " << PC << "." << endl;
 				}
+				break;
+			}
+		case 18:
+			{
+				MBR = AC % 4096;
+				cout << "STOR M(x,8:19) function is activated" << endl;
+				cout << "Left address field at M(x) are replaced by 12 rightmost bits of AC" << endl;
+				break;
+			}
+		case 19:
+			{
+				MBR = AC % 4096;
+				cout << "STOR M(x,8:19) function is activated" << endl;
+				cout << "Left address field at M(x) are replaced by 12 rightmost bits of AC" << endl;
 				break;
 			}
 		case 20:
@@ -314,7 +334,7 @@ int main()
 {
 	memory[0] = 0x0C02002010;
 	memory[1] = 0x090300A000;
-	memory[2] = 0x0B00000030;
+	memory[2] = 0x000300A000;
 	memory[32] = 1;
 	memory[16] = 6;
 	memory[48] = 7;
