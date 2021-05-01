@@ -111,14 +111,20 @@ void decode_execute_ins(long long int IR, long long int MAR)
 		case 11:
 			{
 				long long int TEMP = MQ*(memory[MAR]);
-				long long int n1,n2,temp,k,AC;
-				n1 = (MQ & 0xffffffffff);
-    			n2 = (memory[MAR] & 0xffffffffff);
+				long long int n1,n2,temp,k,AC,rem;
+				n1 = (MQ | 0xfffff);
+    			n2 = (memory[MAR] | 0xfffff);
 				temp = n1*n2;
-				MQ >>= 40;
-				memory[MAR] >>= 40;
-				AC = temp>>40 + memory[MAR]*MQ + memory[MAR]*n1 + MQ*n2;
-				MQ = TEMP % 1099511627776;
+				k = temp>>20;
+				MQ >>= 20;
+				temp = (MQ*n2) + k;
+				k = (temp & 0xfffff);
+				rem = temp>>20;
+				memory[MAR] >>= 20;
+				temp = (n1*memory[MAR]) + k;
+				k = temp>>20;
+				AC = (rem + k + (TEMP % 1048576))/2;
+				MQ = (TEMP % 1099511627776)/2;
 				cout << "MUL M(x) function is activated" << endl;
 				cout << "Most significant figures of the multiplication loaded into accumulator." << endl;
 				cout << "And least significant bits stored in MQ register." << endl;
