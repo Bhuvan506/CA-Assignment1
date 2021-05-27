@@ -176,16 +176,23 @@ void decode_execute_ins(long long int IR, long long int MAR)
 			}
 		case 18:
 			{
-				MBR = AC % 4096;
+				long long int TEMP = memory[MAR] % 1048576;
+				memory[MAR] >>= 32;
+				memory[MAR] <<= 8;
+				memory[MAR] += AC % 4096;
+				memory[MAR] <<= 20;
+				memory[MAR] += TEMP;
 				cout << "STOR M(x,8:19) function is activated" << endl;
 				cout << "Left address field at M(x) are replaced by 12 rightmost bits of AC" << endl;
 				break;
 			}
 		case 19:
 			{
-				MBR = AC % 4096;
-				cout << "STOR M(x,8:19) function is activated" << endl;
-				cout << "Left address field at M(x) are replaced by 12 rightmost bits of AC" << endl;
+				memory[MAR] >>= 12;
+				memory[MAR] <<= 12;
+				memory[MAR] += AC % 4096;
+				cout << "STOR M(x,28:39) function is activated" << endl;
+				cout << "Right address field at M(x) are replaced by 12 rightmost bits of AC" << endl;
 				break;
 			}
 		case 20:
