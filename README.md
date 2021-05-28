@@ -10,7 +10,7 @@ Fetch- This function fetches the instructions.
 Decodeandexecute- This function decodes the opcode and executes the function.
 
 Our Assumptions
-->In multiply operation as our systems are 64 bit computers we considered the value to be stored in MQ and AC as 3 bit each instaed of 40 bit each.
+->In multiply operation as our systems are 80 bit computers we considered the value to be stored in MQ and AC as 40 bit each.
 ->If we want to have a left instruction having halt instruction and right instruction with any other instruction then for left instruction the opcode must be zero but its address field should be non zero. If not it is considered as a single instruction or just the right instruction without a left instruction.
 
 Test case-1:
