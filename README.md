@@ -1,7 +1,7 @@
 # CA-Assignment1
 by Tejdeep Gutta(IMT2020102)
-   Bhuvan (IMT2020)
-   
+   Jayam Shanmukha Bhuvan (IMT2020506)
+    
 Implementing IAS architecture using cpp.
 
 
