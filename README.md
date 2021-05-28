@@ -1,6 +1,7 @@
 # CA-Assignment1
 by Tejdeep Gutta(IMT2020102)
    Bhuvan (IMT2020)
+   
 Implementing IAS architecture using cpp.
 
 
@@ -14,22 +15,38 @@ Our Assumptions
 
 Test case-1:
 memory[0] = 0x090200B010;          LoadMQ,M(x)  MUL M(x)
+
 memory[1] = 0x0B03001040;          MUL M(x)     MUL M(x)
+
 memory[2] = 0x0C04000000;          DIV M(x)
+
 memory[32] = 1;
+
 memory[16] = 2;
+
 memory[48] = 3;
+
 memory[64] = 6;
+
 
 
 Test case-2:
+
 memory[0] = 0x0101005020;         LOAD M(x)      ADD M(x)
+
 memory[1] = 0x0E00200000;         JUMP M(x20:39) HALT
-memory[2] = 0x0C04006030;         DIV M(x)       SUB M(x)   
+
+memory[2] = 0x0C04006030;         DIV M(x)       SUB M(x) 
+
 memory[3] = 0x2104000000;         STOR M(x)      HALT
+
 memory[32] = 1;
+
 memory[16] = 2;
+
 memory[48] = 3;
+
 memory[64] = 6;
+
 
 
