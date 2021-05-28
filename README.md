@@ -14,6 +14,7 @@ Our Assumptions
 ->If we want to have a left instruction having halt instruction and right instruction with any other instruction then for left instruction the opcode must be zero but its address field should be non zero. If not it is considered as a single instruction or just the right instruction without a left instruction.
 
 Test case-1:
+
 memory[0] = 0x090200B010;          LoadMQ,M(x)  MUL M(x)
 
 memory[1] = 0x0B03001040;          MUL M(x)     MUL M(x)
