@@ -115,7 +115,6 @@ void decode_execute_ins(long long int IR, long long int MAR)
 				MQ = TEMP%4294967296;
 				cout << "MUL M(x) function is activated" << endl;
 				cout << "Most significant figures of the multiplication loaded into accumulator." << endl;
-				//printf("%lld\n",MQ);
 				cout << "And least significant bits stored in MQ register." << endl;
 				break;
 			}

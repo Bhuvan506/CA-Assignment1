@@ -111,22 +111,17 @@ void decode_execute_ins(long long int IR, long long int MAR)
 		case 11:
 			{
 				long long int TEMP = MQ*(memory[MAR]);
-				long long int n1,n2,temp,k,AC,rem;
-				n1 = (MQ | 0xfffff);
-    			n2 = (memory[MAR] | 0xfffff);
-				temp = n1*n2;
-				k = temp/1048576;
-				MQ /= 1048576;
-				temp = (MQ*n2) + k;
-				k = (temp & 0xfffff);
-				rem = temp/1048576;
+				long long int n1,n2;
+				cout << MQ << " " << memory[MAR] << " " << TEMP << endl;
+				n1 = (MQ & 0xfffff);
+    			n2 = (memory[MAR] & 0xfffff);
 				memory[MAR] /= 1048576;
-				temp = (n1*memory[MAR]) + k;
-				k = temp/1048576;
-				AC = (rem + k + (TEMP % 1048576))/2;
-				MQ = (TEMP % 1099511627776)/2;
+				MQ /= 1048576;
+				AC = memory[MAR]*MQ + (MQ*n2)/108576 + (memory[MAR]*n1)/1048576 + (n1*n2)/1099511627776;
+				MQ = (TEMP % 1099511627776);
+				cout << AC << " " << MQ << endl;
 				cout << "MUL M(x) function is activated" << endl;
-				cout << "Most significant figures of the multiplication loaded into accumulator." << endl;
+				cout << "Most significant bits of the multiplication loaded into accumulator." << endl;
 				cout << "And least significant bits stored in MQ register." << endl;
 				break;
 			}
@@ -347,12 +342,12 @@ int fetch()
 
 int main()
 {
-	memory[0] = 0x0C02002010;
-	memory[1] = 0x090300A000;
-	memory[2] = 0x000300A000;
-	memory[32] = 1;
-	memory[16] = 6;
-	memory[48] = 7;
+	memory[0] = 0x0201009030;
+	memory[1] = 0x0B02000030;
+	//memory[2] = 0x0A000;
+	memory[32] = 1980998;
+	memory[16] = 620;
+	memory[48] = 7112;
 
 	while(run)
 	{
