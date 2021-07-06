@@ -20,18 +20,18 @@ int main(){
     int ib = log(cl)/log(2);         /*number of index bits*/
     int tb = 32-off-ib;              /*number of tag bits*/
 
-    std::ifstream file(filename);
+    std::ifstream file(filename);    /*ifstream is used to read data from a file*/
     string function, addressinhex;
     long long int data;
     string line;
-    while(getline(file,line)){
-        istringstream iss(line);
-        if(!(iss >> function >> addressinhex >> data)) {break;}
+    while(getline(file,line)){       /*getline function reads a FILE line by line in a loop until the end of FILE*/
+        istringstream iss(line);     
+        if(!(iss >> function >> addressinhex >> data)) {break;}     /*each line consists 3 variables - function(load/store), address in hex, data(to be stored if store) */
         char addr[11];
-        strcpy(addr,addressinhex.c_str());
+        strcpy(addr,addressinhex.c_str());     /*converting address string to character array*/
         string address;
-        for(int i=2; i<10; i++) address += addr[i];
-        long long int n = stol(address,0,16);
+        for(int i=2; i<10; i++) address += addr[i]; /*Removing '0x' part from address string and storing the hex value of address in address string*/
+        long long int n = stol(address,0,16);  /*stol() function converts string into long long*/
         long long int i,t,j;
         n = n >> off;                          /*n is the remaining bits after deleting offset bits*/
         i = n;
